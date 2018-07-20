@@ -5,6 +5,10 @@ import static java.lang.Math.sqrt;
 // Triangle
 public class Triangle extends ShapeLibrary {
 	private double area;
+	private double perimeter;
+	private double side1;
+	private double side2;
+
 	private String style;
 	private double widSq = width * width;
 	private double lenSq = length * length;
@@ -31,10 +35,8 @@ public class Triangle extends ShapeLibrary {
 		area = (width * length) / 2;
 	}
 
-	// Add setPeri();
-	
 	protected void setPeri() {
-		
+		perimeter = side1 + side2 + width;
 	}
 
 	public double getArea() {
