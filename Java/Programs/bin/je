@@ -1,0 +1,16 @@
+#!/bin/bash
+
+demo_classes=${java_head}/Classes/Demo
+reverse_words=${java_head}/Classes/ReverseWords
+reverse_string=${java_head}/Classes/ReverseString
+args_convert=${java_head}/Classes/ArgsConvert
+bin_search=${java_head}/Classes/BinarySearch
+com_char_rem=${java_head}/Classes/CommonCharRem
+fib_seq=${java_head}/Classes/FibonacciSequence
+char_count=${java_head}/Classes/Hashing/CharCount
+fir_rep_char=${java_head}/Classes/Hashing/FirstRepChar
+is_palin=${java_head}/Classes/Palindromes
+vowel_count=${java_head}/Classes/VowelCounter
+
+
+export CLASSPATH=${java_head}:${demo_classes}:${reverse_words}:${reverse_string}:${args_convert}:${bin_search}:${com_char_rem}:${fib_seq}:${char_count}:${fir_rep_char}:${is_palin}:${vowel_count}

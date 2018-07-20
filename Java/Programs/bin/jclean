@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. ${java_head}/bin/je
+
+progname=`basename $0`
+
+find ${java_head} -name "*.class" | xargs rm

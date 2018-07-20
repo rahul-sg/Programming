@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. ${java_head}/bin/je
+
+usage() {
+	echo "usage: ${progname} <java-package-path> [java-classes-path]"
+	exit 1
+}
+
+progname=`basename $0`
+
+if [ $# -eq 0 ]; then
+	usage
+fi
+
+javac $*
