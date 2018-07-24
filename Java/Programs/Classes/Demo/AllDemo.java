@@ -4,6 +4,7 @@ import Packages.rsengupta.MiscLibraries.SearchLibrary;
 import Packages.rsengupta.MiscLibraries.Rectangle;
 import Packages.rsengupta.MiscLibraries.RectPrism;
 import Packages.rsengupta.MiscLibraries.Triangle;
+import Packages.rsengupta.MiscLibraries.TriPrism;
 
 public class AllDemo {
 	public static void main (String args[]) {
@@ -27,8 +28,10 @@ public class AllDemo {
 			System.out.println("		[8]: First Non-Repeating Character");
 			System.out.println("		[9]: Character Count");
 			System.out.println("	Shape Library:");
-			System.out.println("		[10]: <Width> <Length>");
-			System.out.println("		[11]: <Width> <Length> <Height>");
+			System.out.println("		[10]: <Width> <Length> (Rectangle)");
+			System.out.println("		[11]: <Width> <Length> <Height> (Rectangular Prism)");
+			System.out.println("		[12]: <Width> <Length> (Triangle)");
+			System.out.println("		[13]: <Width> <Length> <Height> (Triangular Prism)");
 			System.exit(0);
 		}
 
@@ -146,6 +149,20 @@ public class AllDemo {
 			System.out.println("	Width: " + triDemo.getWidth());
 			System.out.println("	Height: " + triDemo.getLength());
 			System.out.println("Area: " + triDemo.getArea());
+			break;
+
+		case 13:
+			rPrisW = Double.parseDouble(args[1]);
+			rPrisL = Double.parseDouble(args[2]);
+			rPrisH = Double.parseDouble(args[3]);
+
+			TriPrism triPrisDemo = new TriPrism(rPrisW, rPrisL, rPrisH);
+			System.out.println(triPrisDemo.getStyle() + "Pyramid");
+			System.out.println("Dimensions:");
+			System.out.println("	Width: " + triPrisDemo.getWidth());
+			System.out.println("	Heigth: " + triPrisDemo.getHeight());
+			System.out.println("	Length: " + triPrisDemo.getLength());
+			System.out.println("Volume: " + triPrisDemo.getVolume());
 			break;
 
 		default:
