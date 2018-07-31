@@ -5,8 +5,8 @@ import Packages.rsengupta.Library.CD;
 import java.util.*;
 
 public class Library {
-	HashMap<String, Integer> books = new HashMap<String, Integer>();
-	HashMap<String, Integer> cds = new HashMap<String, Integer>();
+	HashMap<String, Book> books = new HashMap<String, Book>();
+	HashMap<String, CD> cds = new HashMap<String, CD>();
 
 	
 	Scanner sc = new Scanner(System.in);
@@ -21,31 +21,81 @@ public class Library {
 		switch (menuChoice) {
 			case 1:
 			
-				System.out.print("How many books would you liek to add? ");
+				System.out.print("How many books would you like to add? ");
 				count = sc.nextInt();
 				System.out.println();
 		
+				String title;
+				String author;
+				String isbn;
+				String des;
+				String bt;
+				String pu;
+				String pr;
+
 				for (int i = 0; i < count; i++) {
 					System.out.print("What book would you like to add? ");
 					key = sc.nextLine();
 					System.out.println();
+
+					System.out.print("Title: ");
+					title = sc.nextLine();
+					System.out.print("Author: ");
+					author = sc.nextLine();
+					System.out.print("ISBN #: ");
+					isbn = sc.nextLine();
+					System.out.print("Description: ");
+					des = sc.nextLine();
+					System.out.print("Borrow Time: ");
+					bt = sc.nextLine();
+					System.out.println("Publisher: ");
+					pu = sc.nextLine();
+					System.out.println("Price: ");
+					pr = sc.nextInt();
 					System.out.println("How many of this book would you like to add? ");
 					value = sc.nextInt();
 
-					books.put(key, value);
+
+					Book newBook = new Book(title, author, isbn, des, bt, value);
+
+					books.put(key, newBook);
 				}
 				break;
 			case 2:
-				System.out.print("How many CDs would liek to add? ");
+				System.out.print("How many CDs would like to add? ");
 				count = sc.nextInt();
+				
+				String title;
+				String author;
+				String isbn;
+				String des;
+				String bt;
+				boolean bl;
+				String ar;
 
 				for (int i = 0; i < count; i++) {
 					System.out.println("What CD would you liek to add? ");
 					key = sc.nextLine();
 					System.out.println();
+					
+					System.out.println("Title: ");
+					title = sc.nextLine();
+					System.out.println("Author: ");
+					author = sc.nextLine();
+					System.out.println("ISBN #: ");
+					isbn = sc.nextLine();
+					System.out.println("Description: ");
+					des = sc.nextLine();
+					System.out.println("Borrow Time: ");
+					bt = sc.nextInt();
+					System.out.println("Artist: ");
+					ar = sc.nextLine();
+
 					System.out.println("How many of this CD would you like to add? ");
 					value = sc.nextInt();
-					cds.put(key, value);
+
+					CD newCD = new CD(title, author, isbn, des, bt, true, ar, value);
+					cds.put(key, newCD);
 				}
 				break;
 
@@ -88,14 +138,6 @@ public class Library {
 	}
 
 	public void viewItems() {
-		for (String key : books.keySet()) {
-			String value = books.get(key).toString();
-				System.out.println("Book: " + key + "	Inventory: " + value);
-		}
-		for (String key : cds.keySet()) {
-			String value = cds.get(key).toString();
-
-			System.out.println("CD: " + key + "	Inventory: " + value);
-		}
+	
 	}
 }
