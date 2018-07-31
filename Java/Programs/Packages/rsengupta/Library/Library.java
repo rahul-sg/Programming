@@ -25,38 +25,30 @@ public class Library {
 				count = sc.nextInt();
 				System.out.println();
 		
-				String title;
-				String author;
-				String isbn;
-				String des;
-				String bt;
-				String pu;
-				String pr;
-
 				for (int i = 0; i < count; i++) {
 					System.out.print("What book would you like to add? ");
 					key = sc.nextLine();
 					System.out.println();
 
 					System.out.print("Title: ");
-					title = sc.nextLine();
+					String title = sc.nextLine();
 					System.out.print("Author: ");
-					author = sc.nextLine();
+					String author = sc.nextLine();
 					System.out.print("ISBN #: ");
-					isbn = sc.nextLine();
+					String isbn = sc.nextLine();
 					System.out.print("Description: ");
-					des = sc.nextLine();
+					String des = sc.nextLine();
 					System.out.print("Borrow Time: ");
-					bt = sc.nextLine();
+					int bt = sc.nextInt();
 					System.out.println("Publisher: ");
-					pu = sc.nextLine();
+					String pu = sc.nextLine();
 					System.out.println("Price: ");
-					pr = sc.nextInt();
+					double pr = sc.nextDouble();
 					System.out.println("How many of this book would you like to add? ");
 					value = sc.nextInt();
 
 
-					Book newBook = new Book(title, author, isbn, des, bt, value);
+					Book newBook = new Book(title, author, isbn, des, bt, pu, pr, value);
 
 					books.put(key, newBook);
 				}
@@ -65,31 +57,23 @@ public class Library {
 				System.out.print("How many CDs would like to add? ");
 				count = sc.nextInt();
 				
-				String title;
-				String author;
-				String isbn;
-				String des;
-				String bt;
-				boolean bl;
-				String ar;
-
 				for (int i = 0; i < count; i++) {
 					System.out.println("What CD would you liek to add? ");
 					key = sc.nextLine();
 					System.out.println();
 					
 					System.out.println("Title: ");
-					title = sc.nextLine();
+					String title = sc.nextLine();
 					System.out.println("Author: ");
-					author = sc.nextLine();
+					String author = sc.nextLine();
 					System.out.println("ISBN #: ");
-					isbn = sc.nextLine();
+					String isbn = sc.nextLine();
 					System.out.println("Description: ");
-					des = sc.nextLine();
+					String des = sc.nextLine();
 					System.out.println("Borrow Time: ");
-					bt = sc.nextInt();
+					int bt = sc.nextInt();
 					System.out.println("Artist: ");
-					ar = sc.nextLine();
+					String ar = sc.nextLine();
 
 					System.out.println("How many of this CD would you like to add? ");
 					value = sc.nextInt();
@@ -113,21 +97,21 @@ public class Library {
 		switch (menuChoice) {
 			case 1:
 				System.out.println("What would you like to remove? ");
-				search = sc.next();
+				search = sc.nextLine();
 				
 				for (String searchKey : books.keySet()) {
 					if (search == searchKey) {
-						books.remove();
+						books.remove(searchKey);
 					}
 				}
 				break;
 			case 2:
 				System.out.println("What would you like to remove? ");
-				search = sc.next();
+				search = sc.nextLine();
 
 				for (String searchKey : cds.keySet()) {
 					if (search == searchKey) {
-						cds.remove();
+						cds.remove(searchKey);
 					}
 				}
 				break;
@@ -138,6 +122,27 @@ public class Library {
 	}
 
 	public void viewItems() {
-	
+		for (Book bKey : books.values()) {
+			System.out.println("Book: " + bKey.getTitle());
+			System.out.println("Author: " + bKey.getAuthor());
+			System.out.println("ISBN: " + bKey.getIsbn());
+			System.out.println("Description: " + bKey.getDescription());
+			System.out.println("Borrow-Time: " + bKey.getBorrowTime());
+			System.out.println("Publisher: " + bKey.getPublisher());
+			System.out.println("MSRP: " + bKey.getPrice());
+			System.out.println("Inventory: " + bKey.getCount());
+		}
+
+		for (CD cdKey : cds.values()) {
+			System.out.println("Book: " + cdKey.getTitle());
+			System.out.println("Author: " + cdKey.getAuthor());
+			System.out.println("ISBN: " + cdKey.getIsbn());
+			System.out.println("Description: " + cdKey.getDescription());
+			System.out.println("Borrow-Time: " + cdKey.getBorrowTime());
+			System.out.println("Bluray: " + cdKey.getBluray());
+			System.out.println("Artist: " + cdKey.getArtist());
+			System.out.println("Inventory: " + cdKey.getCount());
+		}
+
 	}
 }

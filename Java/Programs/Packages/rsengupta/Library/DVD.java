@@ -4,7 +4,7 @@ public DVD extends CD implements LibraryInterface {
 	protected String releaseDate;
 	protected String director;
 
-	public DVD (t, a, i, d, b, bl, ar, r, d) {
+	public DVD (String t, String a, String i, String d, int b, boolean bl, String ar, String r, String d) {
 		super (t, a, i, d, b, bl, ar);
 
 		releaseDate = r;
@@ -45,5 +45,9 @@ public DVD extends CD implements LibraryInterface {
 
 	public String getDirector() {
 		return director;
+	}
+
+	public int getCount() {
+		return count;
 	}
 }

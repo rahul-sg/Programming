@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SCCL {
 	public static void main (String args[]) {
-		Book bookDemo = new Book("Harry Potter and the Sorcerer's Stone", "J. K. Rowling", "978-0439708180", "Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But everything changes when Harry is summoned to attend an infamous school for wizards, and he begins to discover some clues about his illustrious birthright. From the surprising way he is greeted by a lovable giant, to the unique curriculum and colorful faculty at his unusual school, Harry finds himself drawn deep inside a mystical world he never knew existed and closer to his own noble destiny.", 21, "Scholastic Corporation", 29.99);
+		/*Book bookDemo = new Book("Harry Potter and the Sorcerer's Stone", "J. K. Rowling", "978-0439708180", "Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But everything changes when Harry is summoned to attend an infamous school for wizards, and he begins to discover some clues about his illustrious birthright. From the surprising way he is greeted by a lovable giant, to the unique curriculum and colorful faculty at his unusual school, Harry finds himself drawn deep inside a mystical world he never knew existed and closer to his own noble destiny.", 21, "Scholastic Corporation", 29.99);
 
 		System.out.println("Book: " + bookDemo.getTitle());
 		System.out.println("Author: " + bookDemo.getAuthor());
@@ -12,7 +12,7 @@ public class SCCL {
 		System.out.println("Description: " + bookDemo.getDescription());
 		System.out.println("Borrow Tenure: " + bookDemo.getBorrowTime() + " Days");
 		System.out.println("Publisher: " + bookDemo.getPublisher());
-		System.out.println("Price: $" + bookDemo.getCost());
+		System.out.println("Price: $" + bookDemo.getCost());*/
 
 		Scanner sc = new Scanner(System.in);
 		Library lib = new Library();
@@ -28,13 +28,13 @@ public class SCCL {
 		
 			switch (menuChoice) {
 				case 1: 
-					lib.addBook();
+					lib.addItem();
 					break;
 				case 2:
-					lib.removeBook();
+					lib.removeItem();
 					break;
 				case 3:
-					lib.viewBooks();
+					lib.viewItems();
 					break;
 				case 4: 
 					System.exit(0);

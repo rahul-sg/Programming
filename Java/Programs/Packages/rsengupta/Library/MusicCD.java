@@ -4,7 +4,7 @@ public class MusicCD extends CD implements LibraryInterface {
 	protected int trackCount;
 	protected String[] tracks;
 
-	public MusicCD (t, a, i, d, b, bl, ar, tr, tracks) {
+	public MusicCD (String t, String a, String i, String d, int b, boolean bl, String ar, int tr, String[] tracks) {
 		super(t, a, i, d, b, bl, ar);
 
 		trackCount = tr;
@@ -45,5 +45,9 @@ public class MusicCD extends CD implements LibraryInterface {
 
 	public String[] getTracks() {
 		return tracks[];
+	}
+
+	public int getCount() {
+		return count;
 	}
 }

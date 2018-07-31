@@ -6,11 +6,12 @@ public class Book implements LibraryInterface {
 	protected String isbn;
 	protected String description;
 	protected int borrowTime;
+	protected int count;
 
 	protected String publisher;
 	protected double price;
 
-	public Book (t, a, i, d, b, pu, pr) {
+	public Book (String t, String a, String i, String d, int b, String pu, double pr, int c) {
 		title = t;
 		author = a;
 		isbn = i;
@@ -18,6 +19,7 @@ public class Book implements LibraryInterface {
 		borrowTime = b;
 		publisher = pu;
 		price = pr;
+		count = c;
 	}
 
 	public String getTitle() {
@@ -45,5 +47,9 @@ public class Book implements LibraryInterface {
 
 	public double getPrice() {
 		return price;
+	}
+
+	public int getCount() {
+		return count;
 	}
 }
