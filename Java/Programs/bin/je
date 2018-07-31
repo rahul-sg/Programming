@@ -13,4 +13,5 @@ is_palin=${java_head}/Classes/Palindromes
 vowel_count=${java_head}/Classes/VowelCounter
 
 
+
 export CLASSPATH=${java_head}:${demo_classes}:${reverse_words}:${reverse_string}:${args_convert}:${bin_search}:${com_char_rem}:${fib_seq}:${char_count}:${fir_rep_char}:${is_palin}:${vowel_count}
