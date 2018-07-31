@@ -1,6 +1,6 @@
 package Packages.rsengupta.MiscLibraries;
 
-abstract class ShapeLibrary {
+public class ShapeLibrary { //switch to abstract
 	public double width;
 	public double length;
 
@@ -9,8 +9,8 @@ abstract class ShapeLibrary {
 		this.length = length;
 	}
 
-	abstract void setArea();
-	abstract void setPeri();
+	//abstract void setArea();
+	//abstract void setPeri();
 
 }
 
