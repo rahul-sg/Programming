@@ -101,21 +101,13 @@ public class Library {
 				System.out.println("What would you like to remove? ");
 				search = sc.nextLine();
 				
-				for (String searchKey : books.keySet()) {
-					if (search == searchKey) {
-						books.remove(searchKey);
-					}
-				}
+				books.remove(search);
 				break;
 			case 2:
 				System.out.println("What would you like to remove? ");
 				search = sc.nextLine();
 
-				for (String searchKey : cds.keySet()) {
-					if (search == searchKey) {
-						cds.remove(searchKey);
-					}
-				}
+				cds.remove(search);
 				break;
 			default:
 				System.out.println("Wrong Choice");
