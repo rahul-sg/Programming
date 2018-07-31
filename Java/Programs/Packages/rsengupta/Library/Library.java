@@ -27,19 +27,17 @@ public class Library {
 				System.out.println();
 		
 				for (int i = 0; i < count; i++) {
-					System.out.print("What book would you like to add? ");
-					key = sc.nextLine();
+					System.out.println();
 
 					System.out.print("Title: ");
 					String title = sc.nextLine();
+					key = title;
 					System.out.print("Author: ");
 					String author = sc.nextLine();
 					System.out.print("ISBN #: ");
 					String isbn = sc.nextLine();
 					System.out.print("Description: ");
 					String des = sc.nextLine();
-					/*System.out.print("Borrow Time: ");
-					int bt = sc.nextInt();*/
 					System.out.print("Publisher: ");
 					String pu = sc.nextLine();
 					System.out.print("Price: ");
@@ -51,11 +49,11 @@ public class Library {
 					Book newBook = new Book(title, author, isbn, des, 0, pu, pr, value);
 
 					books.put(key, newBook);
+
 				}
 				break;
 			case 2:
 				System.out.print("How many CDs would like to add? ");
-				//count = sc.nextInt();
 				count = Integer.parseInt(sc.nextLine());
 				
 				for (int i = 0; i < count; i++) {
@@ -71,8 +69,6 @@ public class Library {
 					String isbn = sc.nextLine();
 					System.out.print("Description: ");
 					String des = sc.nextLine();
-					/*System.out.println("Borrow Time: ");
-					int bt = sc.nextInt();*/
 					System.out.print("Artist: ");
 					String ar = sc.nextLine();
 
@@ -130,7 +126,7 @@ public class Library {
 		}
 
 		for (CD cdKey : cds.values()) {
-			System.out.println("Book: " + cdKey.getTitle());
+			System.out.println("CD: " + cdKey.getTitle());
 			System.out.println("Author: " + cdKey.getAuthor());
 			System.out.println("ISBN: " + cdKey.getIsbn());
 			System.out.println("Description: " + cdKey.getDescription());
@@ -139,6 +135,47 @@ public class Library {
 			System.out.println("Artist: " + cdKey.getArtist());
 			System.out.println("Inventory: " + cdKey.getCount());
 			System.out.println();
+		}
+	}
+
+	public void searchItems() {
+		System.out.print("Would you like to search for a Book {1} or CD {2}? ");
+		int menuChoice = Integer.parseInt(sc.nextLine());
+		switch (menuChoice) {
+			case 1:
+				System.out.print("What book would you like to search for? ");
+				String search = sc.nextLine();
+
+				for (Book book : books.values()) {
+					if (book.getTitle().equals(search)) {
+						System.out.println("Book: " + book.getTitle());
+						System.out.println("Author: " + book.getAuthor());
+						System.out.println("ISBN: " + book.getIsbn());
+						System.out.println("Description: " + book.getDescription());
+						System.out.println("Borrow-Time: " + book.getBorrowTime());
+						System.out.println("Publisher: " + book.getPublisher());
+						System.out.println("MSRP: " + book.getPrice());
+						System.out.println("Inventory: " + book.getCount());
+					}
+				}
+				break;
+			case 2:
+				System.out.println("What CD would you like to search for? ");
+				String search1 = sc.nextLine();
+
+				for (CD cd : cds.values()) {
+					if (cd.getTitle.equals(search1)) {
+						System.out.println("Book: " + cd.getTitle());
+						System.out.println("Author: " + cd.getAuthor());
+						System.out.println("ISBN: " + cd.getIsbn());
+						System.out.println("Description: " + cd.getDescription());
+						System.out.println("Borrow-Time: " + cd.getBorrowTime());
+						System.out.println("Bluray: " + cd.getBluray());
+						System.out.println("Artist: " + cd.getArtist());
+						System.out.println("Inventory: " + cd.getCount());
+					}
+				}
+				break;
 		}
 	}
 }
