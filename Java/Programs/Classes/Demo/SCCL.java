@@ -18,9 +18,9 @@ public class SCCL {
 		Library lib = new Library();
 		int menuChoice;
 		while (true) {
-			System.out.println("1: Add book");
-			System.out.println("2: Remove book");
-			System.out.println("3: View books");
+			System.out.println("1: Add Items");
+			System.out.println("2: Remove Items");
+			System.out.println("3: View Items");
 			System.out.println("4: Close Program");
 	
 			System.out.print("Your Choice: ");

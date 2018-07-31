@@ -12,23 +12,23 @@ public class Library {
 	Scanner sc = new Scanner(System.in);
 	String key;
 	int value;
-	int menuChoice;
+	String menuChoice;
 	int count;
 
 	public void addItem() {
-		System.out.print("Would you like to add Books or CDs (1 = book) (2 = CD) ");
-		menuChoice = sc.nextInt();
-		switch (menuChoice) {
+		System.out.print("Would you like to add Books or CDs (1 = book) (2 = CD)? ");
+		menuChoice = sc.nextLine();
+		int choice = Integer.parseInt(menuChoice);
+		switch (choice) {
 			case 1:
 			
 				System.out.print("How many books would you like to add? ");
-				count = sc.nextInt();
+				count = Integer.parseInt(sc.nextLine());
 				System.out.println();
 		
 				for (int i = 0; i < count; i++) {
 					System.out.print("What book would you like to add? ");
 					key = sc.nextLine();
-					System.out.println();
 
 					System.out.print("Title: ");
 					String title = sc.nextLine();
@@ -38,47 +38,48 @@ public class Library {
 					String isbn = sc.nextLine();
 					System.out.print("Description: ");
 					String des = sc.nextLine();
-					System.out.print("Borrow Time: ");
-					int bt = sc.nextInt();
-					System.out.println("Publisher: ");
+					/*System.out.print("Borrow Time: ");
+					int bt = sc.nextInt();*/
+					System.out.print("Publisher: ");
 					String pu = sc.nextLine();
-					System.out.println("Price: ");
-					double pr = sc.nextDouble();
-					System.out.println("How many of this book would you like to add? ");
-					value = sc.nextInt();
+					System.out.print("Price: ");
+					double pr = Double.parseDouble(sc.nextLine());
+					System.out.print("How many of this book would you like to add? ");
+					value = Integer.parseInt(sc.nextLine());
 
 
-					Book newBook = new Book(title, author, isbn, des, bt, pu, pr, value);
+					Book newBook = new Book(title, author, isbn, des, 0, pu, pr, value);
 
 					books.put(key, newBook);
 				}
 				break;
 			case 2:
 				System.out.print("How many CDs would like to add? ");
-				count = sc.nextInt();
+				//count = sc.nextInt();
+				count = Integer.parseInt(sc.nextLine());
 				
 				for (int i = 0; i < count; i++) {
 					System.out.println("What CD would you liek to add? ");
 					key = sc.nextLine();
 					System.out.println();
 					
-					System.out.println("Title: ");
+					System.out.print("Title: ");
 					String title = sc.nextLine();
-					System.out.println("Author: ");
+					System.out.print("Author: ");
 					String author = sc.nextLine();
-					System.out.println("ISBN #: ");
+					System.out.print("ISBN #: ");
 					String isbn = sc.nextLine();
-					System.out.println("Description: ");
+					System.out.print("Description: ");
 					String des = sc.nextLine();
-					System.out.println("Borrow Time: ");
-					int bt = sc.nextInt();
-					System.out.println("Artist: ");
+					/*System.out.println("Borrow Time: ");
+					int bt = sc.nextInt();*/
+					System.out.print("Artist: ");
 					String ar = sc.nextLine();
 
-					System.out.println("How many of this CD would you like to add? ");
-					value = sc.nextInt();
+					System.out.print("How many of this CD would you like to add? ");
+					value = Integer.parseInt(sc.nextLine());
 
-					CD newCD = new CD(title, author, isbn, des, bt, true, ar, value);
+					CD newCD = new CD(title, author, isbn, des, 0, true, ar, value);
 					cds.put(key, newCD);
 				}
 				break;
@@ -91,10 +92,11 @@ public class Library {
 
 	public void removeItem() {
 		System.out.print("Would you like to remove Books or CDs (1 = Books) (2 = CD)? ");
-		menuChoice = sc.nextInt();
-
+		
 		String search;
-		switch (menuChoice) {
+		menuChoice = sc.nextLine();
+		int choice = Integer.parseInt(menuChoice);
+		switch (choice) {
 			case 1:
 				System.out.println("What would you like to remove? ");
 				search = sc.nextLine();
@@ -131,6 +133,8 @@ public class Library {
 			System.out.println("Publisher: " + bKey.getPublisher());
 			System.out.println("MSRP: " + bKey.getPrice());
 			System.out.println("Inventory: " + bKey.getCount());
+
+			System.out.println();
 		}
 
 		for (CD cdKey : cds.values()) {
@@ -142,7 +146,7 @@ public class Library {
 			System.out.println("Bluray: " + cdKey.getBluray());
 			System.out.println("Artist: " + cdKey.getArtist());
 			System.out.println("Inventory: " + cdKey.getCount());
+			System.out.println();
 		}
-
 	}
 }
