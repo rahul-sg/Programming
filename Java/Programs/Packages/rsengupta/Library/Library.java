@@ -146,35 +146,114 @@ public class Library {
 				System.out.print("What book would you like to search for? ");
 				String search = sc.nextLine();
 
-				for (Book book : books.values()) {
-					if (book.getTitle().equals(search)) {
-						System.out.println("Book: " + book.getTitle());
-						System.out.println("Author: " + book.getAuthor());
-						System.out.println("ISBN: " + book.getIsbn());
-						System.out.println("Description: " + book.getDescription());
-						System.out.println("Borrow-Time: " + book.getBorrowTime());
-						System.out.println("Publisher: " + book.getPublisher());
-						System.out.println("MSRP: " + book.getPrice());
-						System.out.println("Inventory: " + book.getCount());
-					}
-				}
+				String ti = books.get(search).getTitle();
+				System.out.println("Book: " + ti);
+				
+				String au = books.get(search).getAuthor();
+				System.out.println("Author: " + au);
+				
+				String is = books.get(search).getIsbn();
+				System.out.println("ISBN #: " + is);
+				
+				String de = books.get(search).getDescription();
+				System.out.println("Description: " + de);
+				
+				int bo = books.get(search).getBorrowTime();
+				System.out.println("Borrow-Time: " + bo);
+				
+				String pub = books.get(search).getPublisher();
+				System.out.println("Publisher: " + pub);
+				
+				double pri = books.get(search).getPrice();
+				System.out.println("MSRP: " + pri);
+				
+				int inv = books.get(search).getCount();
+				System.out.println("Inventory: " + inv);
+
 				break;
 			case 2:
 				System.out.println("What CD would you like to search for? ");
 				String search1 = sc.nextLine();
 
-				for (CD cd : cds.values()) {
-					if (cd.getTitle.equals(search1)) {
-						System.out.println("Book: " + cd.getTitle());
-						System.out.println("Author: " + cd.getAuthor());
-						System.out.println("ISBN: " + cd.getIsbn());
-						System.out.println("Description: " + cd.getDescription());
-						System.out.println("Borrow-Time: " + cd.getBorrowTime());
-						System.out.println("Bluray: " + cd.getBluray());
-						System.out.println("Artist: " + cd.getArtist());
-						System.out.println("Inventory: " + cd.getCount());
+				String bk = cds.get(search1).getTitle();
+				System.out.println("Title: " + bk);
+
+				String at = cds.get(search1).getAuthor();
+				System.out.println("Author: " + at);
+
+				String in = cds.get(search1).getIsbn();
+				System.out.println("ISBN: " + in);
+
+				String dc = cds.get(search1).getDescription();
+				System.out.println("Description: " + dc);
+
+				int br = cds.get(search1).getBorrowTime();
+				System.out.println("Borrow-Time: " + br);
+
+				boolean bu = cds.get(search1).getBluray();
+				System.out.println("Bluray: " + bu);
+
+				String art = cds.get(search1).getArtist();
+				System.out.println("Artist: " + art);
+
+				int inve = cds.get(search1).getCount();
+				System.out.println("Inventory: " + inve);
+
+				break;
+			default:
+				System.out.println("Wrong Choice");
+				break;
+		}
+	}
+
+	public void updateItems() {
+		System.out.print("Would you like to update a Book {1} or CD {2}? ");
+		int menuChoice = Integer.parseInt(sc.nextLine());
+
+		switch (menuChoice) {
+			case 1:
+				System.out.print("What book would you like to update? ");
+				String search = sc.nextLine();
+
+				if (search.equals(books.get(search).getTitle())) {
+					System.out.println("What field would you like to update? ");
+					System.out.println("{1}: Title");
+					System.out.println("{2}: Author");
+					System.out.println("{3}: ISBN");
+					System.out.println("{4}: Description");
+					System.out.println("{5}: Count");
+					System.out.println("{6}: Publisher");
+					System.out.println("{7}: MSRP");
+					System.out.println();
+					System.out.print("Your choice: ");
+					int choice = Integer.parseInt(sc.nextLine());
+					switch (choice) {
+						case 1:
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							break;
+						case 5:
+							break;
+						case 6:
+							break;
+						case 7:
+							break;
+						default:
+							System.out.println("Wrong Choice");
+							break;
 					}
 				}
+				break;
+			case 2: 
+
+				break;
+
+			default:
+				System.out.println("Wrong Choice");
 				break;
 		}
 	}
