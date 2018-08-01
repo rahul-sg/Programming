@@ -142,62 +142,55 @@ public class Library {
 		int menuChoice = Integer.parseInt(sc.nextLine());
 		switch (menuChoice) {
 			case 1:
-				System.out.print("What book would you like to search for? ");
-				String search = sc.nextLine();
+				try {
+					System.out.print("What book would you like to search for? ");
+					String search = sc.nextLine();
 
-				String ti = books.get(search).getTitle();
-				System.out.println("Book: " + ti);
-				
-				String au = books.get(search).getAuthor();
-				System.out.println("Author: " + au);
-				
-				String is = books.get(search).getIsbn();
-				System.out.println("ISBN #: " + is);
-				
-				String de = books.get(search).getDescription();
-				System.out.println("Description: " + de);
-				
-				int bo = books.get(search).getBorrowTime();
-				System.out.println("Borrow-Time: " + bo);
-				
-				String pub = books.get(search).getPublisher();
-				System.out.println("Publisher: " + pub);
-				
-				double pri = books.get(search).getPrice();
-				System.out.println("MSRP: " + pri);
-				
-				int inv = books.get(search).getCount();
-				System.out.println("Inventory: " + inv);
+					String ti = books.get(search).getTitle();
+					System.out.println("Book: " + ti);
+					String au = books.get(search).getAuthor();
+					System.out.println("Author: " + au);
+					String is = books.get(search).getIsbn();
+					System.out.println("ISBN #: " + is);
+					String de = books.get(search).getDescription();
+					System.out.println("Description: " + de);
+					int bo = books.get(search).getBorrowTime();
+					System.out.println("Borrow-Time: " + bo);
+					String pub = books.get(search).getPublisher();
+					System.out.println("Publisher: " + pub);
+					double pri = books.get(search).getPrice();
+					System.out.println("MSRP: " + pri);
+					int inv = books.get(search).getCount();
+					System.out.println("Inventory: " + inv);
 
+				} catch (Exception e) {
+					System.out.println("The book you are searching for doesn't exist...");
+				}
 				break;
 			case 2:
-				System.out.println("What CD would you like to search for? ");
-				String search1 = sc.nextLine();
+				try {
+					System.out.println("What CD would you like to search for? ");
+					String search1 = sc.nextLine();
 
-				String bk = cds.get(search1).getTitle();
-				System.out.println("Title: " + bk);
-
-				String at = cds.get(search1).getAuthor();
-				System.out.println("Author: " + at);
-
-				String in = cds.get(search1).getIsbn();
-				System.out.println("ISBN: " + in);
-
-				String dc = cds.get(search1).getDescription();
-				System.out.println("Description: " + dc);
-
-				int br = cds.get(search1).getBorrowTime();
-				System.out.println("Borrow-Time: " + br);
-
-				boolean bu = cds.get(search1).getBluray();
-				System.out.println("Bluray: " + bu);
-
-				String art = cds.get(search1).getArtist();
-				System.out.println("Artist: " + art);
-
-				int inve = cds.get(search1).getCount();
-				System.out.println("Inventory: " + inve);
-
+					String bk = cds.get(search1).getTitle();
+					System.out.println("Title: " + bk);
+					String at = cds.get(search1).getAuthor();
+					System.out.println("Author: " + at);
+					String in = cds.get(search1).getIsbn();
+					System.out.println("ISBN: " + in);
+					String dc = cds.get(search1).getDescription();
+					System.out.println("Description: " + dc);
+					int br = cds.get(search1).getBorrowTime();
+					System.out.println("Borrow-Time: " + br);
+					boolean bu = cds.get(search1).getBluray();
+					System.out.println("Bluray: " + bu);
+					String art = cds.get(search1).getArtist();
+					System.out.println("Artist: " + art);
+					int inve = cds.get(search1).getCount();
+					System.out.println("Inventory: " + inve);
+				} catch (Exception e) {
+					System.out.println("The CD you are searching for doesn't exist...");
+				}
 				break;
 			default:
 				System.out.println("Wrong Choice");
