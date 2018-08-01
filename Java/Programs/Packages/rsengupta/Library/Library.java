@@ -7,7 +7,6 @@ import java.util.*;
 public class Library {
 	HashMap<String, Book> books = new HashMap<String, Book>();
 	HashMap<String, CD> cds = new HashMap<String, CD>();
-
 	
 	Scanner sc = new Scanner(System.in);
 	String key;
