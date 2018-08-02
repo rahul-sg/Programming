@@ -1,4 +1,5 @@
 import Packages.rsengupta.Library.Book;
+import Packages.rsengupta.Library.CD;
 import Packages.rsengupta.Library.Library;
 import Packages.rsengupta.Library.User;
 import java.util.*;
@@ -6,7 +7,8 @@ import java.util.*;
 public class SCCL {
 	static Scanner sc = new Scanner(System.in);
 	static HashMap<String, User> userMap = new HashMap<String, User>();
-	
+	static User user;
+
 	public static void main (String args[]) {	
 		mainFunct();
 	}
@@ -85,9 +87,10 @@ public class SCCL {
 				lib1.viewItems();
 				break;
 			case 3:
-				// Make lib file for check out
+				user.checkOut();
 				break;
 			case 4:
+				user.returnItem();
 				// Make lib files for return
 				break;
 			case 5:
@@ -124,7 +127,7 @@ public class SCCL {
 			System.out.print("Custom User-ID: ");
 			String userName = sc.nextLine();
 
-			User user = new User(name, DOB, email, userName);
+			user = new User(name, DOB, email, userName);
 			userMap.put(userName, user);
 			System.out.println("Thank you for Registering with SCCL");
 			customer();
@@ -134,4 +137,5 @@ public class SCCL {
 			break;
 		}
 	}
+
 }
