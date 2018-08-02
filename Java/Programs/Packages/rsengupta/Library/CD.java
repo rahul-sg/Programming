@@ -28,31 +28,63 @@ public class CD implements LibraryInterface {
 		return title;
 	}
 
+	public void setTitle(String t) {
+		title = t;
+	}
+
 	public String getAuthor() {
 		return author;
+	}
+
+	public void setAuthor(String a) {
+		author = a;
 	}
 
 	public String getIsbn() {
 		return isbn;
 	}
 
+	public void setIsbn(String i) {
+		isbn = i;
+	}
+
 	public String getDescription() {
 		return description;
+	}
+
+	public void setDescription(String d) {
+		description = d;
 	}
 
 	public int getBorrowTime() {
 		return borrowTime;
 	}
 
+	public void setBorrowTime(int b) {
+		borrowTime = b;
+	}
+
 	public boolean getBluray() {
 		return bluray;
+	}
+
+	public void setBluray(boolean b) {
+		bluray = b;
 	}
 
 	public String getArtist() {
 		return artist;
 	}
 
+	public void setArtist(String a) {
+		artist = a;
+	}
+
 	public int getCount() {
 		return count;
+	}
+
+	public void setCount(int c) {
+		count = c;
 	}
 }

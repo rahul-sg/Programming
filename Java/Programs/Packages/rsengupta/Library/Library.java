@@ -209,38 +209,92 @@ public class Library {
 
 				if (search.equals(books.get(search).getTitle())) {
 					System.out.println("What field would you like to update? ");
-					System.out.println("{1}: Title");
-					System.out.println("{2}: Author");
-					System.out.println("{3}: ISBN");
-					System.out.println("{4}: Description");
-					System.out.println("{5}: Count");
-					System.out.println("{6}: Publisher");
-					System.out.println("{7}: MSRP");
+					System.out.println("{1}: Author (" + books.get(search).getAuthor() + ")");
+					System.out.println("{2}: ISBN (" + books.get(search).getIsbn() + ")");
+					System.out.println("{3}: Description (" + books.get(search).getDescription() + ")");
+					System.out.println("{4}: Count (" + books.get(search).getCount() + ")");
+					System.out.println("{5}: Publisher (" + books.get(search).getPublisher() + ")");
+					System.out.println("{6}: MSRP (" + books.get(search).getPrice() + ")");
 					System.out.println();
 					System.out.print("Your choice: ");
 					int choice = Integer.parseInt(sc.nextLine());
+					Book upBook = books.get(search);
 					switch (choice) {
 						case 1:
+							System.out.println("New Author: ");
+							upBook.setAuthor(sc.nextLine());
+
 							break;
 						case 2:
+							System.out.print("New ISBN#: ");
+							upBook.setIsbn(sc.nextLine());
 							break;
 						case 3:
+							System.out.print("New Description: ");
+							upBook.setDescription(sc.nextLine());
 							break;
 						case 4:
+							System.out.print("New Inventory: ");
+							upBook.setCount(Integer.parseInt(sc.nextLine()));
 							break;
 						case 5:
+							System.out.print("New Publisher: ");
+							upBook.setPublisher(sc.nextLine());
 							break;
 						case 6:
-							break;
-						case 7:
+							System.out.print("New Price: ");
+							upBook.setPrice(Double.parseDouble(sc.nextLine()));
 							break;
 						default:
 							System.out.println("Wrong Choice");
 							break;
 					}
+					books.put(search, upBook);
 				}
+
 				break;
-			case 2: 
+			case 2:
+				System.out.print("What CD would you like to update? ");
+				String search2 = sc.nextLine();
+
+				if (search2.equals(cds.get(search2).getTitle())) {
+					System.out.println("What field would you like to update? ");
+					System.out.println("{1}: Author (" + cds.get(search2).getAuthor() + ")");
+					System.out.println("{2}: ISBN (" + cds.get(search2).getIsbn() + ")");
+					System.out.println("{3}: Description (" + cds.get(search2).getDescription() + ")");
+					System.out.println("{4}: Count (" + cds.get(search2).getCount() + ")");
+					System.out.println("{5}: Artist (" + cds.get(search2).getArtist() + ")");
+					System.out.println();
+					System.out.print("Your choice: ");
+					int choice2 = Integer.parseInt(sc.nextLine());
+					CD upCd = cds.get(search2);
+					switch (choice2) {
+						case 1:
+							System.out.println("New Author: ");                                             
+							upCd.setAuthor(sc.nextLine());
+                                                        break;
+						case 2: 
+							System.out.print("New ISBN#: ");                                                
+							upCd.setIsbn(sc.nextLine());                                                  
+							break;
+						case 3:
+							System.out.print("New Description: ");
+							upCd.setDescription(sc.nextLine());
+							break;
+						case 4:
+							System.out.print("New Inventory: ");
+							upCd.setCount(Integer.parseInt(sc.nextLine()));
+							break;
+						case 5:
+							System.out.print("New Artist: ");
+							upCd.setArtist(sc.nextLine());
+							break;
+						default:
+							System.out.println("Wrong Choice");
+							break;
+					}
+					cds.put(search2, upCd);
+				}
 
 				break;
 
