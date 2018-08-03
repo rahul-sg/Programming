@@ -198,6 +198,14 @@ public class Library {
 		}
 	}
 
+	public Book searchBook(String input) {
+		return books.get(input);
+	}
+
+	public CD searchCD(String input) {
+		return cds.get(input);
+	}
+
 	public void updateItems() {
 		System.out.print("Would you like to update a Book {1} or CD {2}? ");
 		int menuChoice = Integer.parseInt(sc.nextLine());

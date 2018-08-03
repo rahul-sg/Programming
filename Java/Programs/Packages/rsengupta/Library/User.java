@@ -1,5 +1,6 @@
 package Packages.rsengupta.Library;
 
+import Packages.rsengupta.Library.Library;
 import Packages.rsengupta.Library.Book;
 import Packages.rsengupta.Library.CD;
 import java.util.*;
@@ -15,12 +16,14 @@ public class User {
 	CD[] checkOutCD = new CD[30];
 	int checkBookI = 0;
 	int checkCDI = 0;
+	Library lib;
 
-	public User(String name, String DOB, String email, String userName) {
+	public User(String name, String DOB, String email, String userName, Library lib) {
 		this.name = name;
 		this.DOB = DOB;
 		this.email = email;
 		this.userName = userName;
+		this.lib = lib;
 	}
 
 	public String getName() {
@@ -64,20 +67,21 @@ public class User {
 		case 1:
 			System.out.print("What book would you like to check out? ");
 			String bChoice = sc.nextLine();
-			Book b = books.get(bChoice);
+			Book b = lib.searchBook(bChoice);
 			int c = b.getCount();
 			b.setCount(c - 1);
 			checkOutBook[checkBookI] = b;
-			books.put(bChoice, b);
+			lib.books.put(bChoice, b);
 			checkBookI++;
 			break;
 		case 2:
 			System.out.print("What CD would you like to check out? ");
 			String cChoice = sc.nextLine();
-			CD cdc = cds.get(cChoice);
+			CD cdc = lib.cds.get(cChoice);
 			int cc = cdc.getCount();
 			cdc.setCount(cc - 1);
 			checkOutCD[checkCDI] = cdc;
+			lib.cds.put(cChoice, cdc);
 			checkCDI++;
 			break;
 		default:
@@ -95,7 +99,7 @@ public class User {
 		case 1:
 			System.out.print("What book would you like to return? ");
 			String ret = sc.nextLine();
-			Book retB = books.get(ret);
+			Book retB = lib.books.get(ret);
 			int retc = retB.getCount();
 			retB.setCount(retc + 1);
 			for (int i = 0; i < checkOutBook.length; i++) {
@@ -113,5 +117,33 @@ public class User {
 		}
 	}
 
+	public void userProfile() {
+		System.out.println("== User Profile ==");
+		System.out.println("Name: " + name);
+		System.out.println("Date of Birth: " + DOB);
+		System.out.println("Email: " + email);
+		System.out.println("User-ID: " + userName);
 
+		System.out.println();
+		try {
+			System.out.println("Books checked out: " + checkBookI);
+			for (Book bk : checkOutBook) {
+				System.out.println("Book: " + bk.getTitle());
+				System.out.println();
+			}
+		} catch (Exception e) {
+			System.out.println("You have no Books checked out...");
+		}
+		System.out.println();
+
+		try {
+			System.out.println("CDs checked out: " + checkCDI + 1);
+			for (CD cds : checkOutCD) {
+				System.out.println("CD: " + cds.getTitle());
+				System.out.println();
+			}
+		} catch (Exception f) {
+			System.out.println("You have no CDs checked out...");
+		}
+	}
 }
