@@ -12,8 +12,8 @@ public class User {
 	protected String userName;
 
 	Scanner sc = new Scanner(System.in);
-	Book[] checkOutBook = new Book[100];
-	CD[] checkOutCD = new CD[30];
+	public Book[] checkOutBook = new Book[100];
+	public CD[] checkOutCD = new CD[30];
 	int checkBookI = 0;
 	int checkCDI = 0;
 	Library lib;
@@ -132,18 +132,20 @@ public class User {
 				System.out.println();
 			}
 		} catch (Exception e) {
-			System.out.println("You have no Books checked out...");
+			System.out.println();
+			//System.out.println("You have no Books checked out...");
 		}
 		System.out.println();
 
 		try {
-			System.out.println("CDs checked out: " + checkCDI + 1);
+			System.out.println("CDs checked out: " + checkCDI);
 			for (CD cds : checkOutCD) {
 				System.out.println("CD: " + cds.getTitle());
 				System.out.println();
 			}
 		} catch (Exception f) {
-			System.out.println("You have no CDs checked out...");
+			System.out.println();
+			//System.out.println("You have no CDs checked out...");
 		}
 	}
 }

@@ -11,13 +11,18 @@ public class SCCL {
 	static Library lib;
 
 	public static void main (String args[]) {	
-		lib = new Library();
-		while (true) {
-			mainFunct();
+		try {
+			lib = new Library();
+			while (true) {
+				mainFunct();
+			}
+		} catch (Exception main) {
+			System.out.println("Enter properly");
 		}
 	}
 
 	public static void mainFunct() {
+		System.out.println("== Main Menu == ");
 		System.out.println("1: Admin");
 		System.out.println("2: Customer");
 		System.out.println("3: Close Program");
@@ -48,11 +53,13 @@ public class SCCL {
 
 	public static boolean admin() {
 		int menuChoice;
+		System.out.println("== Administrator Menu ==");
 		System.out.println("1: Add Items");
 		System.out.println("2: Remove Items");
 		System.out.println("3: View Items");
 		System.out.println("4: Search Items");
-		System.out.println("5: Log-out");
+		System.out.println("5: Users");
+		System.out.println("6: Log-out");
 
 		System.out.print("Your Choice: ");
 		menuChoice = Integer.parseInt(sc.nextLine());
@@ -71,6 +78,33 @@ public class SCCL {
 			lib.searchItems();
 			break;
 		case 5:
+			for (User us : userMap.values()) {
+				try {
+					System.out.println("User: " + us.getUserName());
+					System.out.println("Books: ");
+					for (Book t : us.checkOutBook) {
+						System.out.println("	Title: " + t.getTitle());
+						System.out.println("	Inventory: " + t.getCount());
+					}
+				} catch (Exception e) {
+					System.out.println();
+				}
+
+				System.out.println();
+				try {
+					System.out.println("CDs: ");
+
+					for (CD c : us.checkOutCD) {
+						System.out.println("	Title: " + c.getTitle());
+						System.out.println("	Inventory: " + c.getCount());
+					}
+				} catch (Exception f) {
+					System.out.println();
+				}
+			}
+			System.out.println();
+			break;
+		case 6:
 			return false;
 		default: 
 			System.out.println("Wrong choice");

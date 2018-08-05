@@ -93,13 +93,13 @@ public class Library {
 		int choice = Integer.parseInt(menuChoice);
 		switch (choice) {
 			case 1:
-				System.out.println("What would you like to remove? ");
+				System.out.print("What would you like to remove? ");
 				search = sc.nextLine();
 				
 				books.remove(search);
 				break;
 			case 2:
-				System.out.println("What would you like to remove? ");
+				System.out.print("What would you like to remove? ");
 				search = sc.nextLine();
 
 				cds.remove(search);
@@ -169,7 +169,7 @@ public class Library {
 				break;
 			case 2:
 				try {
-					System.out.println("What CD would you like to search for? ");
+					System.out.print("What CD would you like to search for? ");
 					String search1 = sc.nextLine();
 
 					String bk = cds.get(search1).getTitle();
