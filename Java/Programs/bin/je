@@ -11,7 +11,7 @@ char_count=${java_head}/Classes/Hashing/CharCount
 fir_rep_char=${java_head}/Classes/Hashing/FirstRepChar
 is_palin=${java_head}/Classes/Palindromes
 vowel_count=${java_head}/Classes/VowelCounter
-vendors=${java_head}/Packages/Vendors
+vendors=${java_head}/Packages/Vendors/mongo-java-driver-3.8.0.jar
 
 
 
