@@ -2,6 +2,8 @@ import Packages.rsengupta.Library.Book;
 import Packages.rsengupta.Library.CD;
 import Packages.rsengupta.Library.Library;
 import Packages.rsengupta.Library.User;
+import Packages.rsengupta.Library.LibraryModelMongo;
+
 import java.util.*;
 
 public class SCCL {
@@ -9,8 +11,10 @@ public class SCCL {
 	static HashMap<String, User> userMap = new HashMap<String, User>();
 	static User user;
 	static Library lib;
+	static LibraryModelMongo db;
 
-	public static void main (String args[]) {	
+	public static void main (String args[]) {
+		db = new LibraryModelMongo();
 		try {
 			lib = new Library();
 			while (true) {
@@ -103,6 +107,7 @@ public class SCCL {
 				}
 			}
 			System.out.println();
+			db.view_user();
 			break;
 		case 6:
 			return false;
@@ -169,6 +174,9 @@ public class SCCL {
 
 		user = new User(name, DOB, email, userName, lib);
 		userMap.put(userName, user);
+
+		db.write_user(name, userName, DOB, email);
+
 		System.out.println("Thank you for Registering with SCCL");
 	}
 
@@ -201,5 +209,4 @@ public class SCCL {
 		}
 		return true;
 	}
-
 }
