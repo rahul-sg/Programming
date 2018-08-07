@@ -15,7 +15,6 @@ import java.util.*;
 
 public class LibraryModelMongo {
 	DBCollection userTable;
-	BasicDBObject userRow;
 
 	public LibraryModelMongo() {
 		MongoClient client = new MongoClient();
@@ -25,6 +24,8 @@ public class LibraryModelMongo {
 
 	public void write_user(String name, String userName,
 			       String DOB, String email) {
+		BasicDBObject userRow;
+
 		userRow = new BasicDBObject();
 		userRow.put("userFullName", name);
 		userRow.put("userName", userName);
@@ -34,6 +35,9 @@ public class LibraryModelMongo {
 	}
 
 	public void view_users() {
+		BasicDBObject userRow;
+		userRow = new BasicDBObject();
+
 		DBCursor cursor = userTable.find(userRow);
 
 		while (cursor.hasNext()) {

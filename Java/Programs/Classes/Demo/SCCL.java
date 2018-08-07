@@ -107,7 +107,7 @@ public class SCCL {
 				}
 			}
 			System.out.println();
-			db.view_user();
+			db.view_users();
 			break;
 		case 6:
 			return false;
