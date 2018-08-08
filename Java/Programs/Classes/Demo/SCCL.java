@@ -8,15 +8,17 @@ import java.util.*;
 
 public class SCCL {
 	static Scanner sc = new Scanner(System.in);
-	static HashMap<String, User> userMap = new HashMap<String, User>();
+	static HashMap<String, User> userMap;
 	static User user;
 	static Library lib;
 	static LibraryModelMongo db;
 
 	public static void main (String args[]) {
-		db = new LibraryModelMongo();
+		userMap = new HashMap<String, User>();
+		db = new LibraryModelMongo(userMap);
 		try {
 			lib = new Library();
+			db.populate_users(lib);
 			while (true) {
 				mainFunct();
 			}
@@ -107,7 +109,6 @@ public class SCCL {
 				}
 			}
 			System.out.println();
-			db.view_users();
 			break;
 		case 6:
 			return false;
