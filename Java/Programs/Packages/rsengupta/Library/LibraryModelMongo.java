@@ -10,6 +10,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 
 import Packages.rsengupta.Library.User;
+import Packages.rsengupta.Library.Book;
+import Packages.rsengupta.Library.CD;
 import Packages.rsengupta.Library.Library;
 
 import java.util.*;
@@ -17,13 +19,21 @@ import java.util.*;
 
 public class LibraryModelMongo {
 	DBCollection userTable;
+	DBCollection bookTable;
 	HashMap<String, User> userMap;
+	HashMap<String, Book> books;
+	HashMap<String, CD> cds;
 
-	public LibraryModelMongo(HashMap<String, User> userMap) {
+	public LibraryModelMongo(HashMap<String, User> userMap,
+				 HashMap<String, Book> books,
+				 HashMap<String, CD> cds) {
 		MongoClient client = new MongoClient();
 		DB dataBase = client.getDB("Library");
 		userTable = dataBase.getCollection("UserTable");
+		bookTable = dataBase.getCollection("BookTable");
 		this.userMap = userMap;
+		this.books = books;
+		this.cds = cds;
 	}
 
 	public void write_user(String name, String userName,
@@ -72,5 +82,66 @@ public class LibraryModelMongo {
 			userMap.put(userNameValue, user);
 		}
 	}
-	
+
+	public void write_book(String title, String author, String isbn,
+			       String description, int borrowTime, 
+			       String publisher, double price, int count) {
+		BasicDBObject bookRow;
+
+		bookRow = new BasicDBObject();
+		bookRow.put("bookTitle", title);
+		bookRow.put("bookAuthor", author);
+		bookRow.put("bookISBN", isbn);
+		bookRow.put("bookDescription", description);
+		bookRow.put("bookBT", borrowTime);
+		bookRow.put("bookPublisher", publisher);
+		bookRow.put("bookPrice", price);
+		bookRow.put("bookCount", count);
+		bookTable.insert(bookRow);
+	}
+
+	public void view_books() {
+		BasicDBObject bookRow;
+		bookRow = new BasicDBObject();
+
+		DBCursor cursor = userTable.find(bookRow);
+
+		while (cursor.hasNext()) {
+			System.out.println(cursor.next());
+		}
+
+	}
+
+	public void populate_books(HashMap<String, Book> books) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+		keys.append("bookTitle", true);
+		keys.append("bookAuthor", true);
+		keys.append("bookISBN", true);
+		keys.append("bookDescription", true);
+		keys.append("bookBT", true);
+		keys.append("bookPublisher", true);
+		keys.append("bookPrice", true);
+		keys.append("bookCount", true);
+
+		DBCursor cursor = bookTable.find(ref, keys);
+
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			String titleValue = (String) obj.get("bookTitle");
+			String authorValue = (String) obj.get("bookAuthor");
+			String isbnValue = (String) obj.get("bookISBN");
+			String desValue = (String) obj.get("bookDescription");
+			Integer btValue = (Integer) obj.get("bookBT");
+			String pubValue = (String) obj.get("bookPublisher");
+			Double prValue = (Double) obj.get("bookPrice");
+			Integer ctValue = (Integer) obj.get("bookCount");
+			Book book = new Book(titleValue, authorValue,
+					     isbnValue, desValue,
+					     btValue.intValue(), pubValue,
+					     prValue.doubleValue(),
+					     ctValue.intValue());
+			books.put(titleValue, book);
+		}
+	}
 }

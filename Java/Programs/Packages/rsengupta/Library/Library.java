@@ -2,18 +2,26 @@ package Packages.rsengupta.Library;
 
 import Packages.rsengupta.Library.Book;
 import Packages.rsengupta.Library.CD;
+import Packages.rsengupta.Library.LibraryModelMongo;
+import Packages.rsengupta.Library.User;
 import java.util.*;
 
 public class Library {
-	public HashMap<String, Book> books = new HashMap<String, Book>();
-	public HashMap<String, CD> cds = new HashMap<String, CD>();
-	
+	public HashMap<String, Book> books;
+	public HashMap<String, CD> cds;
+	public LibraryModelMongo db;
+
 	Scanner sc = new Scanner(System.in);
 	String key;
 	int value;
 	String menuChoice;
 	int count;
 
+	public Library(HashMap<String, User> userMap) {
+		books = new HashMap<String, Book>();
+		cds = new HashMap<String, CD>();
+		db = new LibraryModelMongo(userMap, books, cds);
+	}
 	public void addItem() {
 		System.out.print("Would you like to add Books or CDs (1 = book) (2 = CD)? ");
 		menuChoice = sc.nextLine();
@@ -48,6 +56,7 @@ public class Library {
 					Book newBook = new Book(title, author, isbn, des, 0, pu, pr, value);
 
 					books.put(key, newBook);
+					db.write_book(title, author, des, isbn, 0, pu, pr, value);
 
 				}
 				break;

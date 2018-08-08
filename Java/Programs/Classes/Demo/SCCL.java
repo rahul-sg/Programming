@@ -11,14 +11,13 @@ public class SCCL {
 	static HashMap<String, User> userMap;
 	static User user;
 	static Library lib;
-	static LibraryModelMongo db;
 
 	public static void main (String args[]) {
 		userMap = new HashMap<String, User>();
-		db = new LibraryModelMongo(userMap);
 		try {
-			lib = new Library();
-			db.populate_users(lib);
+			lib = new Library(userMap);
+			lib.db.populate_users(lib);
+			lib.db.populate_books(lib.books);
 			while (true) {
 				mainFunct();
 			}
@@ -125,7 +124,7 @@ public class SCCL {
 			String uID = userMap.get(loginID).getUserName();
 		} catch (Exception e) {
 			System.out.println("User ID doesn't exist");
-			return true;
+			return false;
 		}
 		System.out.println("== " + loginID + " Menu ==");
 		System.out.println("1: Search Items");
@@ -176,7 +175,7 @@ public class SCCL {
 		user = new User(name, DOB, email, userName, lib);
 		userMap.put(userName, user);
 
-		db.write_user(name, userName, DOB, email);
+		lib.db.write_user(name, userName, DOB, email);
 
 		System.out.println("Thank you for Registering with SCCL");
 	}
