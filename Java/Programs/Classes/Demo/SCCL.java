@@ -127,6 +127,8 @@ public class SCCL {
 			System.out.println("User ID doesn't exist");
 			return false;
 		}
+		User uTemp = userMap.get(loginID);
+
 		System.out.println("== " + loginID + " Menu ==");
 		System.out.println("1: Search Items");
 		System.out.println("2: View Items");
@@ -144,13 +146,13 @@ public class SCCL {
 			lib.viewItems();
 			break;
 		case 3:
-			user.checkOut();
+			uTemp.checkOut();
 			break;
 		case 4:
-			user.returnItem();
+			uTemp.returnItem();
 			break;
 		case 5:
-			user.userProfile();
+			uTemp.userProfile();
 			break;
 		case 6:
 			return false;
