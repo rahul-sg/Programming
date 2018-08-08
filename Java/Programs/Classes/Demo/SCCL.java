@@ -18,6 +18,7 @@ public class SCCL {
 			lib = new Library(userMap);
 			lib.db.populate_users(lib);
 			lib.db.populate_books(lib.books);
+			lib.db.populate_cds(lib.cds);
 			while (true) {
 				mainFunct();
 			}

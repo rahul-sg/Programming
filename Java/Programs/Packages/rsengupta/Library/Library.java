@@ -85,6 +85,7 @@ public class Library {
 
 					CD newCD = new CD(title, author, isbn, des, 0, true, ar, value);
 					cds.put(key, newCD);
+					db.write_cd(title, author, isbn, des, 0, true, ar, value);
 				}
 				break;
 

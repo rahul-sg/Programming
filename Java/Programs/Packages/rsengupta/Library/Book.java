@@ -11,7 +11,7 @@ public class Book implements LibraryInterface {
 	protected String publisher;
 	protected double price;
 
-	public Book (String t, String a, String i, String d, int b, String pu, double pr, int c) {
+	public Book (String t, String a, String d, String i, int b, String pu, double pr, int c) {
 		title = t;
 		author = a;
 		isbn = i;

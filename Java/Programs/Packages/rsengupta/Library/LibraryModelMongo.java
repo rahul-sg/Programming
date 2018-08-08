@@ -20,6 +20,7 @@ import java.util.*;
 public class LibraryModelMongo {
 	DBCollection userTable;
 	DBCollection bookTable;
+	DBCollection cdTable;
 	HashMap<String, User> userMap;
 	HashMap<String, Book> books;
 	HashMap<String, CD> cds;
@@ -30,6 +31,7 @@ public class LibraryModelMongo {
 		MongoClient client = new MongoClient();
 		DB dataBase = client.getDB("Library");
 		userTable = dataBase.getCollection("UserTable");
+		cdTable = dataBase.getCollection("CDTable");
 		bookTable = dataBase.getCollection("BookTable");
 		this.userMap = userMap;
 		this.books = books;
@@ -142,6 +144,69 @@ public class LibraryModelMongo {
 					     prValue.doubleValue(),
 					     ctValue.intValue());
 			books.put(titleValue, book);
+		}
+	}
+
+	public void write_cd(String title, String author, String isbn,
+			       String description, int borrowTime,
+			       boolean bluray, String artist, int count) {
+		BasicDBObject cdRow;
+
+		cdRow = new BasicDBObject();
+		cdRow.put("cdTitle", title);
+		cdRow.put("cdAuthor", author);
+		cdRow.put("cdISBN", isbn);
+		cdRow.put("cdDescription", description);
+		cdRow.put("cdBT", borrowTime);
+		cdRow.put("cdBluray", bluray);
+		cdRow.put("cdArtist", artist);
+		cdRow.put("cdCount", count);
+		cdTable.insert(cdRow);
+	}
+
+	public void view_cds() {
+		BasicDBObject cdRow;
+		cdRow = new BasicDBObject();
+
+		DBCursor cursor = userTable.find(cdRow);
+
+		while (cursor.hasNext()) {
+			System.out.println(cursor.next());
+		}
+
+	}
+
+	public void populate_cds(HashMap<String, CD> cds) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+		keys.append("cdTitle", true);
+		keys.append("cdAuthor", true);
+		keys.append("cdISBN", true);
+		keys.append("cdDescription", true);
+		keys.append("cdBT", true);
+		keys.append("cdBluray", true);
+		keys.append("cdArtist", true);
+		keys.append("cdCount", true);
+
+		DBCursor cursor = cdTable.find(ref, keys);
+
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			String titleValue = (String) obj.get("cdTitle");
+			String authorValue = (String) obj.get("cdAuthor");
+			String isbnValue = (String) obj.get("cdISBN");
+			String desValue = (String) obj.get("cdDescription");
+			Integer btValue = (Integer) obj.get("cdBT");
+			Boolean blValue = (Boolean) obj.get("cdBluray");
+			String arValue = (String) obj.get("cdArtist");
+			Integer ctValue = (Integer) obj.get("cdCount");
+			CD cd = new CD(titleValue, authorValue,
+					     isbnValue, desValue,
+					     btValue.intValue(),
+					     blValue.booleanValue(),
+					     arValue,
+					     ctValue.intValue());
+			cds.put(titleValue, cd);
 		}
 	}
 }
