@@ -8,6 +8,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
+import com.mongodb.WriteResult;
 
 import Packages.rsengupta.Library.User;
 import Packages.rsengupta.Library.Book;
@@ -19,11 +20,13 @@ import java.util.*;
 
 public class LibraryModelMongo {
 	DBCollection userTable;
-	DBCollection bookTable;
-	DBCollection cdTable;
+	public DBCollection bookTable;
+	public DBCollection cdTable;
 	HashMap<String, User> userMap;
 	HashMap<String, Book> books;
 	HashMap<String, CD> cds;
+
+	public BasicDBObject bookRow;
 
 	public LibraryModelMongo(HashMap<String, User> userMap,
 				 HashMap<String, Book> books,
@@ -88,7 +91,6 @@ public class LibraryModelMongo {
 	public void write_book(String title, String author, String isbn,
 			       String description, int borrowTime, 
 			       String publisher, double price, int count) {
-		BasicDBObject bookRow;
 
 		bookRow = new BasicDBObject();
 		bookRow.put("bookTitle", title);
@@ -101,6 +103,38 @@ public class LibraryModelMongo {
 		bookRow.put("bookCount", count);
 		bookTable.insert(bookRow);
 	}
+
+//get title, count
+
+	public void update_book(String title) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+
+		keys.append("bookTitle", true);
+		keys.append("bookCount", true);
+
+		DBCursor cursor = bookTable.find(ref, keys);
+		Integer countVal;
+		String titleVal;
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			titleVal = (String) obj.get("bookTitle");
+			if (title.equals(titleVal)) {
+				DBObject query, update;
+
+				countVal = (Integer) obj.get("bookCount");
+				countVal--;
+
+				query = new BasicDBObject("bookTitle", title);
+				update = new BasicDBObject();
+				update.put("$set", new BasicDBObject(
+							"bookCount", countVal));
+				WriteResult result = bookTable.update(query, update);
+				break;
+			}
+		}
+	}
+
 
 	public void view_books() {
 		BasicDBObject bookRow;
@@ -162,6 +196,34 @@ public class LibraryModelMongo {
 		cdRow.put("cdArtist", artist);
 		cdRow.put("cdCount", count);
 		cdTable.insert(cdRow);
+	}
+
+	public void update_cd(String title) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+
+		keys.append("cdTitle", true);
+		keys.append("cdCount", true);
+
+		DBCursor cursor = cdTable.find(ref, keys);
+		Integer countVal;
+		String titleVal;
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			titleVal = (String) obj.get("cdTitle");
+			if (title.equals(titleVal)) {
+				countVal = (Integer) obj.get("cdCount");
+				countVal--;
+				DBObject query = new BasicDBObject("cdTitle",
+								   title);
+				DBObject update = new BasicDBObject();
+				update.put("$set", new BasicDBObject("cdCount",
+								     countVal));
+				WriteResult result = cdTable.update(query, 
+								    update);
+				break;
+			}
+		}
 	}
 
 	public void view_cds() {

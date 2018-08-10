@@ -14,16 +14,16 @@ public class SCCL {
 
 	public static void main (String args[]) {
 		userMap = new HashMap<String, User>();
-		try {
-			lib = new Library(userMap);
-			lib.db.populate_users(lib);
-			lib.db.populate_books(lib.books);
-			lib.db.populate_cds(lib.cds);
-			while (true) {
+		lib = new Library(userMap);
+		lib.db.populate_users(lib);
+		lib.db.populate_books(lib.books);
+		lib.db.populate_cds(lib.cds);
+		while (true) {
+			try {
 				mainFunct();
+			} catch (Exception main) {
+				System.out.println("Error in providing inputs, retry..");
 			}
-		} catch (Exception main) {
-			System.out.println("Enter properly");
 		}
 	}
 
@@ -146,7 +146,7 @@ public class SCCL {
 			lib.viewItems();
 			break;
 		case 3:
-			uTemp.checkOut();
+			uTemp.checkOut(lib.db);
 			break;
 		case 4:
 			uTemp.returnItem();

@@ -3,6 +3,18 @@ package Packages.rsengupta.Library;
 import Packages.rsengupta.Library.Library;
 import Packages.rsengupta.Library.Book;
 import Packages.rsengupta.Library.CD;
+import Packages.rsengupta.Library.LibraryModelMongo;
+
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteResult;
+
 import java.util.*;
 
 public class User {
@@ -58,7 +70,7 @@ public class User {
 		this.userName = userName;
 	}
 
-	public void checkOut() {
+	public void checkOut(LibraryModelMongo db) {
 		System.out.println("1: Book");
 		System.out.println("2: CD");
 		System.out.print("Your Choice: ");
@@ -68,20 +80,25 @@ public class User {
 			System.out.print("What book would you like to check out? ");
 			String bChoice = sc.nextLine();
 			Book b = lib.searchBook(bChoice);
+			String title = lib.searchBook(bChoice).getTitle();
 			int c = b.getCount();
 			b.setCount(c - 1);
 			checkOutBook[checkBookI] = b;
 			lib.books.put(bChoice, b);
+
+			db.update_book(title);
 			checkBookI++;
 			break;
 		case 2:
 			System.out.print("What CD would you like to check out? ");
 			String cChoice = sc.nextLine();
 			CD cdc = lib.cds.get(cChoice);
+			String title1 = lib.searchCD(cChoice).getTitle();
 			int cc = cdc.getCount();
 			cdc.setCount(cc - 1);
 			checkOutCD[checkCDI] = cdc;
 			lib.cds.put(cChoice, cdc);
+			db.update_cd(title1);
 			checkCDI++;
 			break;
 		default:
