@@ -107,7 +107,7 @@ public class User {
 		}
 	}
 
-	public void returnItem() {
+	public void returnItem(LibraryModelMongo db) {
 		System.out.println("1: Book");
 		System.out.println("2: CD");
 		System.out.print("Your Choice: ");
@@ -117,6 +117,7 @@ public class User {
 			System.out.print("What book would you like to return? ");
 			String ret = sc.nextLine();
 			Book retB = lib.books.get(ret);
+			String retBT = lib.books.get(ret).getTitle();
 			int retc = retB.getCount();
 			retB.setCount(retc + 1);
 			for (int i = 0; i < checkOutBook.length; i++) {
@@ -125,8 +126,24 @@ public class User {
 					break;
 				}
 			}
+
+			db.return_book(retBT);
 			break;
 		case 2:
+			System.out.print("What CD would you like to return? ");
+			String ret1 = sc.nextLine();
+			CD retCD = lib.cds.get(ret1);
+			String retCDT = lib.cds.get(ret1).getTitle();
+			int retCDc = retCD.getCount();
+			retCD.setCount(retCDc + 1);
+			for (int i = 0; i < checkOutCD.length; i++) {
+				if (ret1.equals(checkOutCD[i].getTitle())) {
+					checkOutCD[i] = null;
+					break;
+				}
+			}
+			
+			db.return_cd(retCDT);
 			break;
 		default:
 			System.out.println("Wrong Choice");

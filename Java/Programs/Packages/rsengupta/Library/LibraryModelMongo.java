@@ -104,8 +104,6 @@ public class LibraryModelMongo {
 		bookTable.insert(bookRow);
 	}
 
-//get title, count
-
 	public void update_book(String title) {
 		BasicDBObject ref = new BasicDBObject();
 		BasicDBObject keys = new BasicDBObject();
@@ -129,12 +127,43 @@ public class LibraryModelMongo {
 				update = new BasicDBObject();
 				update.put("$set", new BasicDBObject(
 							"bookCount", countVal));
-				WriteResult result = bookTable.update(query, update);
+				WriteResult result = bookTable.update(query, 
+								      update);
 				break;
 			}
 		}
 	}
 
+	public void return_book(String title) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+
+		keys.append("bookTitle", true);
+		keys.append("bookCount", true);
+
+		DBCursor cursor = bookTable.find(ref, keys);
+		Integer countVal;
+		String titleVal;
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			titleVal = (String) obj.get("bookTitle");
+			if (title.equals(titleVal)) {
+				DBObject query, update;
+
+				countVal = (Integer) obj.get("bookCount");
+				countVal++;
+
+				query = new BasicDBObject("bookTitle", title);
+				update = new BasicDBObject();
+				update.put("$set", new BasicDBObject(
+							"bookCount", countVal));
+				WriteResult result = bookTable.update(query,
+								      update);
+				break;
+			}
+		}
+
+	}
 
 	public void view_books() {
 		BasicDBObject bookRow;
@@ -224,6 +253,37 @@ public class LibraryModelMongo {
 				break;
 			}
 		}
+	}
+	
+	public void return_cd(String title) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+
+		keys.append("cdTitle", true);
+		keys.append("cdCount", true);
+
+		DBCursor cursor = cdTable.find(ref, keys);
+		Integer countVal;
+		String titleVal;
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			titleVal = (String) obj.get("cdTitle");
+			if (title.equals(titleVal)) {
+				DBObject query, update;
+
+				countVal = (Integer) obj.get("cdCount");
+				countVal++;
+
+				query = new BasicDBObject("cdTitle", title);
+				update = new BasicDBObject();
+				update.put("$set", new BasicDBObject(
+							"cdCount", countVal));
+				WriteResult result = cdTable.update(query,
+								      update);
+				break;
+			}
+		}
+
 	}
 
 	public void view_cds() {

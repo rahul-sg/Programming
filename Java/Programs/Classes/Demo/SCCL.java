@@ -149,7 +149,7 @@ public class SCCL {
 			uTemp.checkOut(lib.db);
 			break;
 		case 4:
-			uTemp.returnItem();
+			uTemp.returnItem(lib.db);
 			break;
 		case 5:
 			uTemp.userProfile();
