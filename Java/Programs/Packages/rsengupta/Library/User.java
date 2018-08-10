@@ -117,15 +117,15 @@ public class User {
 			System.out.print("What book would you like to return? ");
 			String ret = sc.nextLine();
 			Book retB = lib.books.get(ret);
-			String retBT = lib.books.get(ret).getTitle();
+			String retBT = retB.getTitle();
 			int retc = retB.getCount();
 			retB.setCount(retc + 1);
-			for (int i = 0; i < checkOutBook.length; i++) {
+			/*for (int i = 0; i < checkOutBook.length; i++) {
 				if (ret.equals(checkOutBook[i].getTitle())) {
 					checkOutBook[i] = null;
 					break;
 				}
-			}
+			}*/
 
 			db.return_book(retBT);
 			break;
