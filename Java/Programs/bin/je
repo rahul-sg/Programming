@@ -11,8 +11,10 @@ char_count=${java_head}/Classes/Hashing/CharCount
 fir_rep_char=${java_head}/Classes/Hashing/FirstRepChar
 is_palin=${java_head}/Classes/Palindromes
 vowel_count=${java_head}/Classes/VowelCounter
+calc=${java_head}/Classes/Calculator
 vendors=${java_head}/Packages/Vendors/mongo-java-driver-3.8.0.jar
+rev_dig=${java_head}/Classes/ReverseDigitLimit
+pr_pw_trp=${java_head}/Classes/PrimePowerTriple
+lg_palin_prod=${java_head}/Classes/LargestPalinProd
 
-
-
-export CLASSPATH=${java_head}:${demo_classes}:${reverse_words}:${reverse_string}:${args_convert}:${bin_search}:${com_char_rem}:${fib_seq}:${char_count}:${fir_rep_char}:${is_palin}:${vowel_count}:${vendors}
+export CLASSPATH=${java_head}:${demo_classes}:${reverse_words}:${reverse_string}:${args_convert}:${bin_search}:${com_char_rem}:${fib_seq}:${char_count}:${fir_rep_char}:${is_palin}:${vowel_count}:${vendors}:${calc}:${rev_dig}:${pr_pw_trp}:${lg_palin_prod}
