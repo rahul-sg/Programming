@@ -3,7 +3,7 @@ import Packages.rsengupta.MiscLibraries.NumberLibrary;
 public class NumberDemo {
 	public static void main (String args[]) {
 		NumberLibrary numLib;
-		numLib = new Packages.rsengupta.NumberLibrary();
+		numLib = new Packages.rsengupta.MiscLibraries.NumberLibrary();
 		
 		if (args.length == 0) {
 			System.out.println("Usage: NumberDemo <input>");
@@ -17,8 +17,8 @@ public class NumberDemo {
 			System.out.println (i + ": " + numLib.iterative(i));
 		}
 		
-		int num = Integer.parseInt(args[1]);
-		for (int i = 1; i <= num; i++) {
+		int num1 = Integer.parseInt(args[1]);
+		for (int i = 1; i <= num1; i++) {
 			System.out.println (i + ": " + numLib.recursive(i));
 		}
 
