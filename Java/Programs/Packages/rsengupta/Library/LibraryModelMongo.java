@@ -25,6 +25,8 @@ public class LibraryModelMongo {
 	HashMap<String, User> userMap;
 	HashMap<String, Book> books;
 	HashMap<String, CD> cds;
+	
+	BasicDBObject userRow;
 
 	public BasicDBObject bookRow;
 
@@ -43,7 +45,6 @@ public class LibraryModelMongo {
 
 	public void write_user(String name, String userName,
 			       String DOB, String email) {
-		BasicDBObject userRow;
 
 		userRow = new BasicDBObject();
 		userRow.put("userFullName", name);
@@ -122,6 +123,10 @@ public class LibraryModelMongo {
 
 				countVal = (Integer) obj.get("bookCount");
 				countVal--;
+				if (countVal <= 0) {
+					countVal++;
+					break;
+				}
 
 				query = new BasicDBObject("bookTitle", title);
 				update = new BasicDBObject();
@@ -143,6 +148,7 @@ public class LibraryModelMongo {
 
 		DBCursor cursor = bookTable.find(ref, keys);
 		Integer countVal;
+		int countMax = books.get(title).getCount();
 		String titleVal;
 		while (cursor.hasNext()) {
 			DBObject obj = cursor.next();
@@ -152,6 +158,10 @@ public class LibraryModelMongo {
 
 				countVal = (Integer) obj.get("bookCount");
 				countVal++;
+				if (countVal >= countMax) {
+					countVal--;
+					break;
+				}
 
 				query = new BasicDBObject("bookTitle", title);
 				update = new BasicDBObject();
@@ -210,6 +220,46 @@ public class LibraryModelMongo {
 		}
 	}
 
+//
+	public void write_chkOB(String title) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+		keys.append("bookTitle", true);
+
+		Book bk = books.get(title);
+		//BasicDBObject chkOB = new BasicDBObject();
+
+		DBCursor cursor = bookTable.find(ref, keys);
+		String titleVal;
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			titleVal = (String) obj.get("bookTitle");
+			if (title.equals(titleVal)) {
+				userRow.put("checkedOutBook", bk.getTitle());
+				userTable.insert(userRow);
+				break;
+			}
+		}
+	}
+
+/*	public void populate_chkOB(String[] checkedOutBooks) {
+		BasicDBObject ref = new BasicDBObject();
+		BasicDBObject keys = new BasicDBObject();
+		keys.append("bookName", true);
+		
+		DBCursor cursor = bookTable.find(ref, keys);
+		
+		while (cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			for (int i = 0; i < checkedOutBooks.length; i++) {
+				String title = (String) obj.get("bookName");
+				checkedOutBooks[i] = title;
+			}
+			
+		}
+	}*/
+//
+
 	public void write_cd(String title, String author, String isbn,
 			       String description, int borrowTime,
 			       boolean bluray, String artist, int count) {
@@ -243,6 +293,10 @@ public class LibraryModelMongo {
 			if (title.equals(titleVal)) {
 				countVal = (Integer) obj.get("cdCount");
 				countVal--;
+				if (countVal <= 0) {
+					countVal++;
+					break;
+				}
 				DBObject query = new BasicDBObject("cdTitle",
 								   title);
 				DBObject update = new BasicDBObject();
@@ -264,6 +318,7 @@ public class LibraryModelMongo {
 
 		DBCursor cursor = cdTable.find(ref, keys);
 		Integer countVal;
+		int countMax = cds.get(title).getCount();
 		String titleVal;
 		while (cursor.hasNext()) {
 			DBObject obj = cursor.next();
@@ -273,6 +328,10 @@ public class LibraryModelMongo {
 
 				countVal = (Integer) obj.get("cdCount");
 				countVal++;
+				if (countVal >= countMax) {
+					countVal--;
+					break;
+				}
 
 				query = new BasicDBObject("cdTitle", title);
 				update = new BasicDBObject();

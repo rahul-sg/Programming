@@ -51,6 +51,7 @@ public class SCCL {
 			break;
 		case 3:
 			System.exit(0);
+			break;
 		default:
 			System.out.println("Wrong Choice");
 			break;

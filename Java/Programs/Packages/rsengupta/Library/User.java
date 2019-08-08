@@ -87,6 +87,7 @@ public class User {
 			lib.books.put(bChoice, b);
 
 			db.update_book(title);
+			db.write_chkOB(title);
 			checkBookI++;
 			break;
 		case 2:
@@ -120,12 +121,12 @@ public class User {
 			String retBT = retB.getTitle();
 			int retc = retB.getCount();
 			retB.setCount(retc + 1);
-			/*for (int i = 0; i < checkOutBook.length; i++) {
+			for (int i = 0; i < checkOutBook.length; i++) {
 				if (ret.equals(checkOutBook[i].getTitle())) {
 					checkOutBook[i] = null;
 					break;
 				}
-			}*/
+			}
 
 			db.return_book(retBT);
 			break;
