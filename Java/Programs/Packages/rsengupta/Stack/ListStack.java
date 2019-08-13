@@ -2,16 +2,11 @@ package Packages.rsengupta.Stack;
 import java.util.*;
 
 public class ListStack implements StackInterface {
-	private LinkedList<E> top;
+	private LinkedList<Object> top;
 	private int size;
 
 	public ListStack() {
-		top = null;
-		size = 0;
-	}
-
-	public ListStack(int size) {
-		top = null;
+		top = new LinkedList<Object>();
 		size = 0;
 	}
 
@@ -20,26 +15,35 @@ public class ListStack implements StackInterface {
 		size = 0;
 	}
 
-	public void push(E it) {
-		top = new LinkedList<E>(it, top);
+	public void push(Object it) {
+		top.add(it);
 		size++;
 	}
 
-	public E pop() {
-		assert top != null : "Stack is empty";
-		E it = top.element();
-		top = top.next();
-		size--;
-		return it;
+	public Object pop() {
+		if (size > 0) {
+			Object it = top.getLast();
+			top.removeLast();
+			size--;
+			return it;
+		} else {
+			throw new NullPointerException();
+		}
 	}
 
-	public E topValue() {
+	public Object topValue() {
 		assert top != null : "Stack is empty";
 		return top.element();
 	}
 
 	public int length() {
 		return size;
+	}
+
+	public void printElem() {
+		for (int i = 0; i < top.size(); i++) {
+			System.out.println(top.get(i));
+		}
 	}
 }
 
