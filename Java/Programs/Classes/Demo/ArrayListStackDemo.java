@@ -1,7 +1,7 @@
 import java.util.*;
 import Packages.rsengupta.Stack.*;
 
-public class StackDemo {
+public class ArrayListStackDemo {
 	public static void main (String args[]) {
 		ArrayListStack aStack;
 		aStack = new Packages.rsengupta.Stack.ArrayListStack();
