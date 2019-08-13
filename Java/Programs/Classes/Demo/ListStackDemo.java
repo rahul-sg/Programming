@@ -3,7 +3,7 @@ import Packages.rsengupta.Stack.*;
 
 public class ListStackDemo {
 	static Scanner sc = new Scanner(System.in);
-	public static void main(String args[]) {
+	public void LStack() {
 		ListStack lStack;
 		lStack = new Packages.rsengupta.Stack.ListStack();
 

@@ -2,8 +2,8 @@ import java.util.*;
 import Packages.rsengupta.Stack.*;
 
 public class ArrayStackDemo {
-	static Scanner sc = new Scanner(System.in);
-	public static void main (String args[]) {
+	public void AStack () {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter size of Array Stack: ");
 
 		int size = sc.nextInt();
@@ -16,9 +16,9 @@ public class ArrayStackDemo {
 			System.out.println("Enter 0 for push, Enter 1 for pop: ");
 			int inp = input.nextInt();
 			if (inp == 0) {
-				Scanner sc = new Scanner(System.in);
+				Scanner s = new Scanner(System.in);
 				System.out.println("Enter Object to add to stack: ");
-				Object obj = sc.nextLine();
+				Object obj = s.nextLine();
 				try {
 					aStack.push(obj);
 				} catch (NullPointerException e) {
