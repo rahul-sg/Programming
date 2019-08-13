@@ -22,14 +22,17 @@ public class ArrayStackDemo {
 				try {
 					aStack.push(obj);
 				} catch (NullPointerException e) {
-					System.out.println("Stack Overflow");
+					System.out.println("Stack Overflow Error");
 				}
 				System.out.println("-----------------");
 				aStack.printElem();
 				System.out.println("-----------------");
 			} else if (inp == 1) {
-				aStack.printElem();
-				aStack.pop();
+				try {
+					aStack.pop();
+				} catch (NullPointerException exc) {
+					System.out.println("Stack Underflow Error");
+				}
 				System.out.println("-----------------");
 				aStack.printElem();
 				System.out.println("-----------------");

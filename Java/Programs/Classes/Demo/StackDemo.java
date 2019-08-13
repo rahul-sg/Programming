@@ -19,7 +19,11 @@ public class StackDemo {
 				aStack.printElem();
 				System.out.println("-----------------");
 			} else if (inp == 1) {
-				aStack.pop();
+				try {
+					aStack.pop();
+				} catch (NullPointerException e) {
+					System.out.println("Stack Underflow Error");
+				}
 				System.out.println("-----------------");
 				aStack.printElem();
 				System.out.println("-----------------");
